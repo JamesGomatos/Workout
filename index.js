@@ -21,4 +21,4 @@ app.get("/random/:min/:max", function(req, res) {
   res.json({ result: result });
 });
 
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`)
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
