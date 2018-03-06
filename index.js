@@ -5,10 +5,27 @@ var pg = require('pg');
 const PORT = process.env.PORT || 7000;
 
 
+/**
+  heroku pg:psql
+  psql (9.5.2, server 9.6.2)
+  SSL connection (cipher: DHE-RSA-AES256-SHA, bits: 256)
+  Type "help" for help.
+  => create table test_table (id integer, name text);
+  CREATE TABLE
+  => insert into test_table values (1, 'hello database');
+  INSERT 0 1
+  => \q
+*/
+
+
+// Need to set up an .env file to store variables such as
+// process.env.port and others
+
 
 // Calls the express function to start a new express application
 var app = express()
 
+console.log(process.env.DATABASE_URL);
 //This ensures that when you access your app using the /db route,
 // it will return all rows in the test_table table.
 app.get('/db', function (request, response) {
