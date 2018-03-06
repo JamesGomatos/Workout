@@ -12,7 +12,8 @@
   "dependencies": {
     "express": "^4.16.2",
     "morgan": "^1.9.0",
-    "nodemon": "^1.17.1"
+    "nodemon": "^1.17.1",
+    "pg": "^7.4.1"
   },
   "engines": {
     "node": "8.5.0"
