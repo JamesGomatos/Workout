@@ -1,6 +1,9 @@
 var express = require("express");
 var http = require("http");
 var path = require("path");
+const PORT = process.env.PORT || 5000
+
+
 
 // Calls the express function to start a new express application
 var app = express()
@@ -18,6 +21,4 @@ app.get("/random/:min/:max", function(req, res) {
   res.json({ result: result });
 });
 
-app.listen(3000, function() {
-  console.log("App started on port 3000")
-});
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`)
