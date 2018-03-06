@@ -2,7 +2,7 @@ var express = require("express");
 var http = require("http");
 var path = require("path");
 var pg = require('pg');
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 7000;
 
 
 
@@ -21,7 +21,7 @@ app.get('/db', function (request, response) {
        { response.render('pages/db', {results: result.rows} ); }
     });
   });
-
+});
 
 app.get("/random/:min/:max", function(req, res) {
   var min = parseInt(req.params.min);
@@ -36,4 +36,4 @@ app.get("/random/:min/:max", function(req, res) {
   res.json({ result: result });
 });
 
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
