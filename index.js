@@ -1,8 +1,16 @@
 var express = require("express");
 var http = require("http");
 var path = require("path");
-var pg = require('pg');
+require('dotenv').config()
+const { Client } = require('pg')
 
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
+});
+
+client.connect();
 
 
 const PORT = process.env.PORT || 7000;
@@ -28,20 +36,19 @@ const PORT = process.env.PORT || 7000;
 // Calls the express function to start a new express application
 var app = express()
 
+console.log("FUCKING WORK")
 console.log(process.env.DATABASE_URL);
+
 //This ensures that when you access your app using the /db route,
 // it will return all rows in the test_table table.
 app.get('/db', function (request, response) {
-  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query('SELECT * FROM test_table', function(err, result) {
-      done();
-      if (err) {
-       { console.error(err); response.send("Error " + err); }
-      } else {
-        res.json({ results: result.rows });
-      }
-    });
-  });
+  client.query('SELECT * FROM test_table;', (err, res) => {
+    if (err) throw err;
+    for (let row of res.rows) {
+      console.log(JSON.stringify(row));
+    }
+  client.end();
+  })
 });
 
 
