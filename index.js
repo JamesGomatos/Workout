@@ -2,7 +2,7 @@ var express = require("express");
 var http = require("http");
 var path = require("path");
 var pg = require('pg');
-require('dotenv').config()
+
 
 
 const PORT = process.env.PORT || 7000;
@@ -35,10 +35,11 @@ app.get('/db', function (request, response) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     client.query('SELECT * FROM test_table', function(err, result) {
       done();
-      if (err)
+      if (err) {
        { console.error(err); response.send("Error " + err); }
-      else
-        res.json({results: result.rows});
+      } else {
+        res.json({ results: result.rows });
+      }
     });
   });
 });
