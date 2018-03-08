@@ -38,10 +38,11 @@ app.get('/db', function (request, response) {
       if (err)
        { console.error(err); response.send("Error " + err); }
       else
-       { response.render('pages/db', {results: result.rows} ); }
+        res.json({results: result.rows});
     });
   });
 });
+
 
 app.get("/random/:min/:max", function(req, res) {
   var min = parseInt(req.params.min);
