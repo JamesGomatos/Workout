@@ -44,9 +44,11 @@ console.log(process.env.DATABASE_URL);
 app.get('/db', function (request, response) {
   client.query('SELECT * FROM test_table;', (err, res) => {
     if (err) throw err;
+    var data = [];
     for (let row of res.rows) {
-      console.log(JSON.stringify(row));
+      data.push(row);
     }
+  response.json(data)
   client.end();
   })
 });
