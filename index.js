@@ -2,6 +2,9 @@ var express = require("express");
 var http = require("http");
 var path = require("path");
 var pg = require('pg');
+require('dotenv').config()
+
+
 const PORT = process.env.PORT || 7000;
 
 
