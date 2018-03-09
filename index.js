@@ -62,6 +62,10 @@ app.get('/db', function (request, response) {
   })
 });
 
+// your approach does not take advantage of built-in connection pooling. 
+// instead of client.connect() try using pg.connect()
+// and this will return a client from the pool.
+
 
 app.get("/random/:min/:max", function(req, res) {
   var min = parseInt(req.params.min);
