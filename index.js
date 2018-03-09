@@ -38,10 +38,11 @@ client.connect()
 // connect to connect from commoand line
 // heroku pg:psql
 
-
 // problem connecting to server:
 // change config file and restart the database process through the task manager
 
+
+// MAKE SURE TO LOAD PRODUCTION VARIABLES INTO THE DATABASE. DB:CONFIG
 
 // Calls the express function to start a new express application
 var app = express()
