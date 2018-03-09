@@ -5,39 +5,47 @@ require('dotenv').config()
 const { Client } = require('pg')
 
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true,
-});
-
-client.connect();
-
-
 const PORT = process.env.PORT || 7000;
+const client = (function() {
+  if (PORT == 7000) {
+  return new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: false,
+    });
+  } else {
+    return new Client({
+      connectionString: process.env.PRODUCTION_DATABASE_URL,
+      ssl: true,
+    });
+  }
+}());
+
+client.connect()
 
 
-/**
-  heroku pg:psql
-  psql (9.5.2, server 9.6.2)
-  SSL connection (cipher: DHE-RSA-AES256-SHA, bits: 256)
-  Type "help" for help.
-  => create table test_table (id integer, name text);
-  CREATE TABLE
-  => insert into test_table values (1, 'hello database');
-  INSERT 0 1
-  => \q
-*/
+
+// need to create a production database and a local database to keep
+// the two instances seaparate
+
+// How to connect to the databse from command-line
+// psql -d testDB -U postgres -p 5000
+
+// if you run heroku local you need to change the PORT so it runs correctly
+// heroku local -p num
+// where num must be a different port for the Local DB and the Production DB
 
 
-// Need to set up an .env file to store variables such as
-// process.env.port and others
+// connect to connect from commoand line
+// heroku pg:psql
+
+
+// problem connecting to server:
+// change config file and restart the database process through the task manager
 
 
 // Calls the express function to start a new express application
 var app = express()
 
-console.log("FUCKING WORK")
-console.log(process.env.DATABASE_URL);
 
 //This ensures that when you access your app using the /db route,
 // it will return all rows in the test_table table.
