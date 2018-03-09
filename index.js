@@ -44,6 +44,12 @@ client.connect()
 
 // MAKE SURE TO LOAD PRODUCTION VARIABLES INTO THE DATABASE. DB:CONFIG
 
+
+// To laod tables and run files in the local database this is the command
+// psql -d testDB -U postgres -p 5432 -a -f db_migration1.sql
+
+
+
 // Calls the express function to start a new express application
 var app = express()
 
@@ -62,7 +68,7 @@ app.get('/db', function (request, response) {
   })
 });
 
-// your approach does not take advantage of built-in connection pooling. 
+// your approach does not take advantage of built-in connection pooling.
 // instead of client.connect() try using pg.connect()
 // and this will return a client from the pool.
 

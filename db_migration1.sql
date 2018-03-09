@@ -1,0 +1,61 @@
+DROP TABLE IF EXISTS FOLLOW;
+DROP TABLE IF EXISTS LINEITEM;
+DROP TABLE IF EXISTS EXERCISE;
+DROP TABLE IF EXISTS WORKOUT;
+DROP TABLE IF EXISTS PROFILE;
+DROP TABLE IF EXISTS ACCOUNT;
+
+
+CREATE TABLE ACCOUNT(
+  ID INTEGER PRIMARY KEY,
+  username VARCHAR(30),
+  email VARCHAR(320),
+  password VARCHAR(30)
+);
+
+CREATE TABLE PROFILE(
+  ID INTEGER PRIMARY KEY,
+  username VARCHAR(10),
+  firstname VARCHAR(30),
+  lastname VARCHAR(30),
+  location VARCHAR(30)
+);
+
+CREATE TABLE WORKOUT(
+  ID INTEGER PRIMARY KEY,
+  created_by INTEGER,
+  name VARCHAR(30),
+  created_at timestamptz NOT NULL DEFAULT now(),
+  likes INTEGER,
+  FOREIGN KEY (created_by) REFERENCES ACCOUNT(ID)
+);
+
+
+CREATE TABLE EXERCISE(
+  ID INTEGER PRIMARY KEY,
+  name VARCHAR(30),
+  created_by INTEGER,
+  FOREIGN KEY (created_by) REFERENCES ACCOUNT(ID)
+);
+
+
+CREATE TABLE LINEITEM(
+  workout_id INTEGER,
+  exercise_id INTEGER,
+  FOREIGN KEY (workout_id) REFERENCES WORKOUT(ID),
+  FOREIGN KEY (exercise_id) REFERENCES EXERCISE(ID),
+  PRIMARY KEY (workout_id, exercise_id)
+);
+
+
+CREATE TABLE FOLLOW(
+  workout_id INTEGER,
+  follower_id INTEGER,
+  FOREIGN KEY (follower_id) REFERENCES ACCOUNT(ID),
+  PRIMARY KEY (workout_id, follower_id)
+);
+
+
+
+CREATE INDEX workout_exercise ON LINEITEM(workout_id, exercise_id);
+CREATE INDEX workout_follower ON FOLLOW(workout_id, follower_id);
