@@ -1,9 +1,15 @@
-var express = require("express");
-var http = require("http");
-var path = require("path");
-require('dotenv').config()
-const { Client } = require('pg')
+const express = require("express"),
+      logger = require("morgan"),
+      http = require("http"),
+      bodyParser = require("body-parser"),
+      path = require("path");
+import passport from 'passport';
+require('dotenv').config();
 
+// const isDeveloping = process.env.NODE_ENV !== 'production';
+
+
+const { Client } = require('pg');
 
 const PORT = process.env.PORT || 7000;
 const client = (function() {
@@ -53,9 +59,19 @@ client.connect()
 // Calls the express function to start a new express application
 var app = express()
 
+// logging middleware
+app.use(logger('dev'))
+
+// Allows us to parse urlendcoded bodies to JSON and expose the object
+// in req.body when we start building endpoints
+app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.json())
+
+
 
 //This ensures that when you access your app using the /db route,
 // it will return all rows in the test_table table.
+/**
 app.get('/db', function (request, response) {
   client.query('SELECT * FROM test_table;', (err, res) => {
     if (err) throw err;
@@ -67,23 +83,7 @@ app.get('/db', function (request, response) {
   client.end();
   })
 });
+*/
 
-// your approach does not take advantage of built-in connection pooling.
-// instead of client.connect() try using pg.connect()
-// and this will return a client from the pool.
-
-
-app.get("/random/:min/:max", function(req, res) {
-  var min = parseInt(req.params.min);
-  var max = parseInt(req.params.max);
-
-  if (isNaN(min) || isNaN(max)) {
-    res.status(400);
-    res.json({ error: "Bad request."});
-    return;
-  }
-  var result = Math.round((Math.random() * (max-min)) + min);
-  res.json({ result: result });
-});
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
