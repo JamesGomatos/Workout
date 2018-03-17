@@ -17,3 +17,14 @@ router.get('/:id', async (req, res) => {
   const { rows } = await db.query('SELECT * FROM account WHERE ID = $1', [id]);
   res.send(rows);
 });
+
+
+router.get('/insert/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { rows } = await db.tx('SELECT * FROM account WHERE ID = $1', [id]);
+    res.send(rows)
+  } catch (err) {
+    console.log('DATABASE ' + err)
+  }
+});
