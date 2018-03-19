@@ -2,7 +2,7 @@ need to create a production database and a local database to keep
 the two instances separate
 
 How to connect to the database from command-line
-psql -d testDB -U postgres -p 5000
+psql -d testDB -U postgres -p 5432
 
 if you run heroku local you need to change the PORT so it runs correctly
 heroku local -p num
@@ -21,10 +21,6 @@ MAKE SURE TO LOAD PRODUCTION VARIABLES INTO THE DATABASE. DB:CONFIG
 
 To load tables and run files in the local database this is the command
 psql -d testDB -U postgres -p 5432 -a -f db_migration1.sql
-
-
-
-
 
 
 

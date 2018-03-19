@@ -19,7 +19,6 @@ router.get('/:id', async (req, res) => {
 });
 
 
-
 router.get('/insert/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -31,18 +30,20 @@ router.get('/insert/:id', async (req, res) => {
 });
 
 
+// This is will be the signup route just need to do more validation
+// add bcrypt
 router.post('/wtf', async (req, res) => {
   // if we don't have the required information
-  if (!req.body.id || !req.body.password || !req.body.email || !req.body.username) {
+  if (!req.body.password || !req.body.email || !req.body.username) {
     res.send(404, "Invalid login options");
   }
   // retrieve the necessary parameters
-  const id = req.body.id;
   const email = req.body.email;
   const username = req.body.username;
   const password = req.body.password;
   try {
-      const { rows } = await db.tx('INSERT INTO account(ID, username, email, password) VALUES($1, $2, $3, $4) RETURNING *', [id, username, email, password]);
+      const { rows } = await db.tx('INSERT INTO account(username, email, password) VALUES($1, $2, $3) RETURNING *', [username, email, password]);
+      console.log(rows[0])
       res.send(rows);
   } catch (err) {
       console.log('DATABASE', err);
