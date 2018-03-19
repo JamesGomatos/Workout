@@ -1,7 +1,7 @@
 const db = require('../db')
 
 
-// function that allows the user to create workouts note:(this route is protected)
+// function that allows post request to create workouts note:(this route is protected)
 const createWorkout = async (req, res, next) => {
   try {
     const likes = 1
@@ -18,14 +18,26 @@ const createWorkout = async (req, res, next) => {
   }
 }
 
-// Read Workouts
+// Function that allows get request to list user's created workouts note:(PROTECTED)
+const getWorkouts = async (req, res, next) => {
+  try {
+    const id = req.user.id
+    if (!id) {
+      res.status(404).send({error: "You must signin!"})
+    }
+    const { rows } = await db.query('SELECT * FROM workout WHERE created_by=$1', [id]);
+    res.json(rows)
+  } catch (e) {
+    return res.json(e)
+  }
+}
 
 // Update Workouts
 
-// Delete Workouts
-
+// Function that allows a front-end to submit a delete
+const deleteWorkout = async(req, res, next)
 // Search Exercises
 
 
 
-module.exports = {createWorkout}
+module.exports = {createWorkout, getWorkouts}

@@ -6,4 +6,6 @@ const router = new Router()
 module.exports = router
 
 
-router.post('/create-workout', User.createWorkout);
+router.post('/create-workout', User.createWorkout)
+
+router.get('/my-workouts', User.getWorkouts)
