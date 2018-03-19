@@ -70,6 +70,7 @@ CREATE TABLE LINEITEM(
   PRIMARY KEY (workout_id, exercise_id)
 );
 
+
 /*
 Contains a list of rows representing a workout and a user that follows
 the workout.
