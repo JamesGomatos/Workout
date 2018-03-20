@@ -1,9 +1,10 @@
-const databases = require('./database');
+const databases = require('./database')
 const passport = require('passport')
 const passportJWT = require('jwt-simple')
 const passportService = require('../services/passport')
 const authentication = require('./authentication')
 const user = require('./user')
+const lineitem = require('./lineitem')
 
 // set the value of requireAuth to equal our JWT strategy
 const requireAuth = passport.authenticate('jwt', {session: false})
@@ -19,5 +20,6 @@ module.exports = (app) => {
   // protect the database route (must send jwt token so we can
   // retreive req.user)
   app.use('/', requireAuth, user)
+  app.use('/', requireAuth, lineitem)
   app.use('/database', requireAuth, databases);
 }
