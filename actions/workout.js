@@ -12,5 +12,16 @@ const findWorkoutCreatedBy = async (id) => {
 }
 
 
+
+// Return a object of all the workouts created by user ID.
+const findAllWorkoutsCreatedBy = async (id) => {
+  const { rows } = await db.query('SELECT * FROM workout WHERE created_by=$1', [id])
+  if (rows.length == 0) {
+    return null
+  }
+  return rows
+}
+
+
 // Find if the user created the workout with the specified id
-module.exports = { findWorkoutCreatedBy }
+module.exports = { findWorkoutCreatedBy, findAllWorkoutsCreatedBy }
