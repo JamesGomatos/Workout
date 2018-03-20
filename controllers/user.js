@@ -32,7 +32,7 @@ const getWorkouts = async (req, res, next) => {
     }
 }
 
-// Update Workouts
+// Function that returns the lineitems in a specific Workout.
 
 
 
@@ -60,9 +60,10 @@ const deleteWorkout = async(req, res, next) => {
     }
 }
 
+// Function that retrieves a list of the most liked workouts.
 
-// Search Exercises
 
 
+// Function that gets the lineItems in a workout.
 
 module.exports = {createWorkout, getWorkouts, deleteWorkout}
