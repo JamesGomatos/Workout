@@ -9,3 +9,5 @@ module.exports = router
 router.post('/create-workout', User.createWorkout)
 
 router.get('/my-workouts', User.getWorkouts)
+
+router.delete('/my-workouts/delete/:id', User.deleteWorkout)

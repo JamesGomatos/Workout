@@ -13,4 +13,5 @@ const findUserById = async (id) => {
   const { rows } = await db.query('SELECT * FROM account WHERE ID=$1', [id])
   return rows[0]
 }
+
 module.exports = {verifyUser, findUserById}
