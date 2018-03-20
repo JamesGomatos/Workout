@@ -6,3 +6,5 @@ module.exports = router
 
 
 router.post('/add/line-item', lineitem.addExercise)
+
+router.delete('/delete/line-item', lineitem.deleteExercise)
