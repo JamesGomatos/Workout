@@ -23,5 +23,15 @@ const findAllWorkoutsCreatedBy = async (id) => {
 }
 
 
+// Return true or false depending if the current user followers the specified workout.
+const followsWorkoutTrueOrFalse = async (workout_id, follower_id) => {
+  const { rows } = await db.query('SELECT * FROM follow WHERE workout_id=$1 AND follower_id=$2 ', [workout_id, follower_id])
+  if (rows.length == 0) {
+    return false
+  } else {
+    return true
+  }
+}
+
 // Find if the user created the workout with the specified id
-module.exports = { findWorkoutCreatedBy, findAllWorkoutsCreatedBy }
+module.exports = { findWorkoutCreatedBy, findAllWorkoutsCreatedBy, followsWorkoutTrueOrFalse }

@@ -1,6 +1,6 @@
 const db = require('../db')
 
-const { findWorkoutCreatedBy, findAllWorkoutsCreatedBy } = require('../actions/workout')
+const { findWorkoutCreatedBy, findAllWorkoutsCreatedBy, followsWorkoutTrueOrFalse } = require('../actions/workout')
 
 // function that allows post request to create workouts note:(this route is protected)
 const createWorkout = async (req, res) => {
@@ -84,9 +84,59 @@ const deleteWorkout = async(req, res) => {
 }
 
 // Function that retrieves a list of the most liked workouts.
+const getLikedWorkouts = async (req, res) => {
+  try {
+
+  } catch (e) {
+
+  }
+}
+
+// Function that allows a user to follow a workout.
+const followWorkout = async(req, res) => {
+  try {
+    const workout_id = req.params.id
+    const follower_id = req.user.id
+
+    // Add error handling to make sure the same user doesn't follow
+    // the same workout twice.
+    if (!workout_id || !follower_id) {
+      res.status(404).send({error: "Missing workout_id or follower_id in body"}).end()
+    } else {
+        const { rows } = await db.tx('INSERT INTO follow(workout_id, follower_id) VALUES($1, $2) RETURNING *', [workout_id, follower_id])
+        res.status(200).json(rows).end()
+    }
+  } catch (e) {
+    return res.json(e)
+  }
+}
+
+
+// Function that allows a user to unfollow a workout.
+const unfollowWorkout = async(req, res) => {
+  console.log("EXECUTED")
+  try {
+    const workout_id = req.params.id
+    const follower_id = req.user.id
+
+    // This is error handling to make sure that the user follows the
+    // specified workout.
+    const errorHandling = await followsWorkoutTrueOrFalse(workout_id, follower_id)
+
+    if (!workout_id || !follower_id) {
+      res.status(404).send({error: "Missing workout_id or follower_id in body"}).end()
+    } else if (errorHandling == false) {
+      res.status(404).send({error: "User does not follow that workout!"}).end()
+    } else {
+          const { rows } = await db.tx('DELETE FROM follow WHERE workout_id=$1 AND follower_id=$2 RETURNING *', [workout_id, follower_id])
+          res.status(200).json(rows).end()
+    }
+  } catch (e) {
+    return res.json(e)
+  }
+}
 
 
 
 // Function that gets the lineItems in a workout.
-
-module.exports = {createWorkout, getWorkouts, getWorkout, deleteWorkout}
+module.exports = {createWorkout, getWorkouts, getWorkout, deleteWorkout, followWorkout, unfollowWorkout}

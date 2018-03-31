@@ -14,4 +14,4 @@ const findUserById = async (id) => {
   return rows[0]
 }
 
-module.exports = {verifyUser, findUserById}
+module.exports = {verifyUser, findUserById }

@@ -8,8 +8,14 @@ module.exports = router
 
 router.post('/create-workout', User.createWorkout)
 
+router.delete('/my-workouts/delete/:id', User.deleteWorkout)
+
 router.get('/my-workouts', User.getWorkouts)
 
 router.get('/workout/:id', User.getWorkout)
 
-router.delete('/my-workouts/delete/:id', User.deleteWorkout)
+
+// Handling following of playlists
+router.post('/follow-workout/:id', User.followWorkout)
+
+router.delete('/unfollow-workout/:id', User.unfollowWorkout)
