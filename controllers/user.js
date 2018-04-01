@@ -21,7 +21,9 @@ const createWorkout = async (req, res) => {
       }
 }
 
-// Function that allows get request to list user's created w
+
+
+// Function that allows get request to list user's created workouts and liked workotus
 // orkouts note:(PROTECTED)
 // Need to include followed workouts probably.
 const getWorkouts = async (req, res) => {
@@ -30,7 +32,7 @@ const getWorkouts = async (req, res) => {
     if (!id) {
       res.status(404).send({error: "You must signin!"}).end()
     } else {
-        const { rows } = await db.query('SELECT * FROM workout WHERE created_by=$1', [id]);
+        const { rows } = await db.query('SELECT name FROM workout WHERE created_by=$1 UNION ALL SELECT name FROM workout WHERE id IN (SELECT workout_id FROM follow WHERE follower_id=$1) ', [id]);
         res.json(rows).end()
     }
   } catch (e) {

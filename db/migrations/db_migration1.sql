@@ -128,8 +128,14 @@ INSERT INTO ACCOUNT(username, email, password) VALUES('James', 'james.gomatos@gm
 INSERT INTO ACCOUNT(username, email, password) VALUES('Jibby', 'jibby@gmail.com', 'dog');
 INSERT INTO ACCOUNT(username, email, password) VALUES('George', 'george.gomatos@gmail.com', 'dog');
 
-INSERT INTO WORKOUT(created_by, name, likes) VALUES(1, 'Cardio', 10);
-INSERT INTO WORKOUT(created_by, name, likes) VALUES(1, 'Arms and Triceps', 30);
+INSERT INTO WORKOUT(created_by, name, likes) VALUES(1, 'Cardio Workout', 10);
+INSERT INTO WORKOUT(created_by, name, likes) VALUES(1, 'Biceps Workout', 25);
+INSERT INTO WORKOUT(created_by, name, likes) VALUES(1, 'Leg Workout', 10);
+INSERT INTO WORKOUT(created_by, name, likes) VALUES(2, 'Shoulders Workout', 30);
+INSERT INTO WORKOUT(created_by, name, likes) VALUES(2, 'Chest Workout', 100);
+INSERT INTO WORKOUT(created_by, name, likes) VALUES(2, 'Balance Workout', 65);
+INSERT INTO WORKOUT(created_by, name, likes) VALUES(2, 'Yoga', 17);
+
 
 /* WEIGHTLIFTING*/
 
@@ -191,4 +197,9 @@ INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets
 INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Attitude Touchdown','balance', 'full body', NULL, '1m', NULL, '2-3', 1);
 INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Single-Leg Deadlift','balance', 'butt and hamstrings', NULL, NULL, 15, '2-3', 1);
 
-/* CARDIO */
+/* Cardio? */
+
+
+/* FOLLOW */
+INSERT INTO FOLLOW(workout_id, follower_id) VALUES(1, 2);
+INSERT INTO FOLLOW(workout_id, follower_id) VALUES(2, 2);

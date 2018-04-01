@@ -1,4 +1,3 @@
-const databases = require('./database')
 const passport = require('passport')
 const passportJWT = require('jwt-simple')
 const passportService = require('../services/passport')
@@ -22,6 +21,5 @@ module.exports = (app) => {
   // retreive req.user)
   app.use('/', requireAuth, user)
   app.use('/', requireAuth, exercise)
-  app.use('/', requireAuth, lineitem)
-  app.use('/database', requireAuth, databases);
+  app.use('/', requireAuth, lineitem);
 }

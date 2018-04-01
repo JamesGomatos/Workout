@@ -92,4 +92,7 @@ const deleteExercise = async (req, res) => {
 
 
 
-module.exports = { addExercise, deleteExercise }
+module.exports = {
+  addExercise,
+  deleteExercise
+}
