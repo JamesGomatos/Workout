@@ -88,9 +88,14 @@ const deleteWorkout = async(req, res) => {
 // Function that retrieves a list of the most liked workouts.
 const getLikedWorkouts = async (req, res) => {
   try {
-
+    const { rows } = await db.query('SELECT name, likes from WORKOUT ORDER BY likes DESC')
+    if (rows.length == 0) {
+      return res.status(404).send({error: "No liked workouts exist"}).end()
+    } else {
+        return res.status(200).json(rows).end()
+    }
   } catch (e) {
-
+      return res.json(e)
   }
 }
 
@@ -139,4 +144,11 @@ const unfollowWorkout = async(req, res) => {
 }
 
 
-module.exports = {createWorkout, getWorkouts, getWorkout, deleteWorkout, followWorkout, unfollowWorkout}
+module.exports = {
+  createWorkout,
+  getWorkouts,
+  getWorkout,
+  deleteWorkout,
+  getLikedWorkouts,
+  followWorkout,
+  unfollowWorkout}

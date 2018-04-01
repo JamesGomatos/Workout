@@ -18,6 +18,7 @@ router.get('/my-workouts', User.getWorkouts)
 
 router.get('/workout/:id', User.getWorkout)
 
+router.get('/workouts/most-liked', User.getLikedWorkouts)
 
 // Handling following of playlists
 router.post('/follow-workout/:id', User.followWorkout)
