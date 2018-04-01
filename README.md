@@ -15,6 +15,8 @@ For example: To access a protected route the user must send a request with heade
   key=Authorization, value=bearer token
   
 Here is an example of my test header:
+
+
 [
   {"key":"Content-Type","value":"application/json","description":""}, 
   {"key":"Authorization","value":"bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlhdCI6MTUyMTQ0ODY1NjAwMX0.GxLzq3IdU52wkKl6DDtwQpgdPkBO-vbJrLHwi24Ji38"} 
