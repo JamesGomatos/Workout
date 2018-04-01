@@ -38,12 +38,35 @@ The body of the request should contain the name of the workout in JSON notation
 
 To delete a workout you must send a HTTP DELETE request to the route: https://limitless-sea-87001.herokuapp.com/delete/workout/:id
 
-where :id is the id of the desired workout to be deleted. The body of the request shouldn't contain anything.
+where :id is the id of the desired workout to be deleted. 
+
+The body of the request shouldn't contain anything.
 
 ### Get a list that contains the names of the logged-in user's created workouts and the workouts followed by the logged-in user.
 
 Send a HTTP GET request to the route: https://limitless-sea-87001.herokuapp.com/delete/workouts
 
 The body of the request shouldn't contain anything.
+
+### Get a list of the exercises in a workout
+
+Send a HTTP GET request to the route: https://limitless-sea-87001.herokuapp.com/workout/:id
+
+Where :id is the id of the workout to be viewed.
+
+The body of the request shouldn't contain anything.
+
+### Get a list of the most liked workouts 
+
+Send a HTTP GET request to the route: https://limitless-sea-87001.herokuapp.com/workouts/most-liked
+
+The body of the request shouldn't contain anything/
+
+### Follow a workout 
+Send A HTTP POST request to the route: https://limitless-sea-87001.herokuapp.com/follow/workout/:id
+
+### Unfollow a workout
+
+Send a HTTP DELETE request to the route: https://limitless-sea-87001.herokuapp.com/unfollow/workout/:id
 
 
