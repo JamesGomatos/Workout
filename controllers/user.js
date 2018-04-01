@@ -21,7 +21,9 @@ const createWorkout = async (req, res) => {
       }
 }
 
-// Function that allows get request to list user's created workouts note:(PROTECTED)
+// Function that allows get request to list user's created w
+// orkouts note:(PROTECTED)
+// Need to include followed workouts probably.
 const getWorkouts = async (req, res) => {
   try {
     const id = req.user.id
@@ -114,7 +116,7 @@ const followWorkout = async(req, res) => {
 
 // Function that allows a user to unfollow a workout.
 const unfollowWorkout = async(req, res) => {
-  console.log("EXECUTED")
+
   try {
     const workout_id = req.params.id
     const follower_id = req.user.id
@@ -137,6 +139,4 @@ const unfollowWorkout = async(req, res) => {
 }
 
 
-
-// Function that gets the lineItems in a workout.
 module.exports = {createWorkout, getWorkouts, getWorkout, deleteWorkout, followWorkout, unfollowWorkout}

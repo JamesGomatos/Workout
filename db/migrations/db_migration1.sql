@@ -46,9 +46,13 @@ Contains a list of exercises. One exercise per row. Each exercise
 is created by a user and a created_by columun which which links
 to the account table.
 */
-CREATE TABLE EXERCISE(
+CREATE TABLE EXERCISE (
   ID SERIAL PRIMARY KEY,
   name VARCHAR(50),
+  category VARCHAR(50),
+  muscle_group VARCHAR(50),
+  breaths INTEGER,
+  duration VARCHAR(50),
   reps INTEGER,
   sets VARCHAR,
   created_by INTEGER,
@@ -87,6 +91,31 @@ CREATE TABLE FOLLOW(
 CREATE INDEX workout_exercise ON LINEITEM(workout_id, exercise_id);
 CREATE INDEX workout_follower ON FOLLOW(workout_id, follower_id);
 
+
+/*
+Create views for the the different categories so they are easier to query.
+*/
+CREATE VIEW weightlifting_bicep_workouts AS
+  SELECT name, reps, sets FROM EXERCISE
+    WHERE category='weightlifting' and muscle_group='biceps';
+
+
+CREATE VIEW weightlifting_chest_workouts AS
+  SELECT name, reps, sets FROM EXERCISE
+    WHERE category='weightlifting' and muscle_group='chest';
+
+
+CREATE VIEW weightlifting_shoulder_workouts AS
+  SELECT name, reps, sets FROM EXERCISE
+    WHERE category='weightlifting' and muscle_group='shoulders';
+
+
+CREATE VIEW weightlifting_legs_workouts AS
+  SELECT name, reps, sets FROM EXERCISE
+    WHERE category='weightlifting' and muscle_group='legs';
+
+
+
 /*
 SEED DATA FOR THE DATABASE.
 */
@@ -98,9 +127,64 @@ INSERT INTO ACCOUNT(username, email, password) VALUES('George', 'george.gomatos@
 INSERT INTO WORKOUT(created_by, name, likes) VALUES(1, 'Cardio', 10);
 INSERT INTO WORKOUT(created_by, name, likes) VALUES(1, 'Arms and Triceps', 30);
 
-INSERT INTO EXERCISE(name, reps, sets, created_by) VALUES('Barbell Curl', 8, '2-3', 1);
-INSERT INTO EXERCISE(name, reps, sets, created_by) VALUES('Tripcep Pushdown', 10,'2-3', 1);
-INSERT INTO EXERCISE(name, reps, sets, created_by) VALUES('Dumbbell Alternate Bicep Curl', 8, '2-3', 2);
-INSERT INTO EXERCISE(name, reps, sets, created_by) VALUES('Cable Hammer Curls', 10, '2-3', 2);
-INSERT INTO EXERCISE(name, reps, sets, created_by) VALUES('Prayer Bench Curls', 8, '2-3', 3);
-INSERT INTO EXERCISE(name, reps, sets, created_by) VALUES('Hammer Curls', 10, '2-3', 1);
+/* WEIGHTLIFTING*/
+
+  /* Biceps */
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Barbell Curl', 'weightlifting', 'biceps', NULL, NULL, 8, '2-3', 1);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Tripcep Pushdown','weightlifting', 'biceps', NULL, NULL, 10,'2-3', 1);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Dumbbell Alternate Bicep Curl','weightlifting', 'biceps', NULL, NULL, 8, '2-3', 2);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Cable Hammer Curls','weightlifting', 'biceps', NULL, NULL, 10, '2-3', 2);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Prayer Bench Curls','weightlifting', 'biceps', NULL, NULL, 8, '2-3', 3);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Hammer Curls','weightlifting', 'biceps', NULL, NULL, 10, '2-3', 1);
+
+  /* Chest*/
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Barbell Bench Press', 'weightlifting', 'chest', NULL, NULL, 8, '2-3', 1);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Flat Bench Dumbbell Press','weightlifting', 'chest', NULL, NULL, 10,'2-3', 1);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Low-Incline Barbell Bench Press ','weightlifting', 'chest', NULL, NULL, 8, '2-3', 2);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Machine Decline Press ','weightlifting', 'chest', NULL, NULL, 10, '2-3', 2);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Incline Dumbbell Press','weightlifting', 'chest', NULL, NULL, 8, '2-3', 3);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Dips For Chest','weightlifting', 'chest', NULL, NULL, 10, '2-3', 1);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Incline Bench Cable Fly','weightlifting', 'chest', NULL, NULL, 8, '2-3', 2);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Incline Dumbbell Pull-Over','weightlifting', 'chest', NULL, NULL, 10, '2-3', 2);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Pec-Deck Machine','weightlifting', 'chest', NULL, NULL, 8, '2-3', 3);
+
+  /* Shoulders*/
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Dumbbell Shoulder Press','weightlifting', 'shoulders', NULL, NULL, 8, '3-4', 2);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Upright Barbell Row','weightlifting', 'shoulders', NULL, NULL, 10, '2-3', 2);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Seated Bent-Over Rear Delt Raise','weightlifting', 'shoulders', NULL, NULL, 8, '2-3', 3);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Side Lateral Raise', 'shoulders', NULL, NULL, 10, '2-3', 1);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Standing Front Barbell Raise Over Head','weightlifting', 'shoulders', NULL, NULL, 8, '2-3', 2);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Front Cable Raise','weightlifting', 'shoulders', NULL, NULL, 8, '2-3', 2);
+
+/* legs */
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Leg Press','weightlifting', 'legs', NULL, NULL, 10, '3-4', 2);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Dumbbell Walking Lunge','weightlifting', 'legs', NULL, NULL, 10, '3-4', 2);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Leg Extensions','weightlifting', 'legs', NULL, NULL, 12, '3-4', 2);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Romanian Deadlift','weightlifting', 'legs', NULL, NULL, 12, '3-4', 2);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Lying Leg Curls','weightlifting', 'legs', NULL, NULL, 12, '3-4', 2);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Standing Calf Raises','weightlifting', 'legs', NULL, NULL, 10, '3-4', 2);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Barbell Squat','weightlifting', 'legs', NULL, NULL, 10, '3-4', 2);
+
+
+/* YOGA */
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Childs Pose', 'yoga', NULL, 5, NULL, NULL, NULL, 1);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Downward Facing Dog', 'yoga', NULL, 6, NULL, NULL, NULL, 1);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Rag Doll', 'yoga', NULL, 6, NULL, NULL, NULL, 2);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('First Half of Sun Salutation A', 'yoga', NULL, 3, NULL, NULL, NULL, 2);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('High Plank', 'yoga', NULL, NULL, '10-15s', NULL, NULL, 3);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Chaturanga Push-Ups','yoga', NULL, NULL, NULL, 3, NULL, 1);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Upward Facing Dog','yoga', NULL, 1, NULL, NULL, NULL, 1);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Weighted Squats','yoga', NULL, NULL, '1m', NULL, NULL, 1);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Oblique Twists','yoga', NULL, NULL, NULL, 16, NULL, 1);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Glute Bridges','yoga', NULL, NULL, NULL, 8, NULL, 1);
+
+
+/* BALANCE */
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('One-Legged Squat Reach','balance', 'full body', NULL, '30s', NULL, '2-3', 1);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Curtsy Salute','balance', 'full body', NULL, NULL, 12, '2-3', 1);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Liftoff', 'balance', 'full body', NULL, '1m', NULL, '2-3', 1);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Pendulum','balance', 'full body', NULL, NULL, 10, '2-3', 1);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Attitude Touchdown','balance', 'full body', NULL, '1m', NULL, '2-3', 1);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Single-Leg Deadlift','balance', 'butt and hamstrings', NULL, NULL, 15, '2-3', 1);
+
+/* CARDIO */

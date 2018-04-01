@@ -31,7 +31,16 @@ const addExercise = async (req, res) => {
      const found = user_workouts.find( (element) => {
        return element.id == workout_id
      })
+
+     /*
+     make sure that the exercise EXISTS
+
+     NEED TO ADD THIS
+     */
+
+
      if (found) {
+
        const { rows } = await db.tx('INSERT INTO lineitem(workout_id, exercise_id) VALUES($1, $2) RETURNING *', [workout_id, exercise_id])
        res.json(rows).end()
      } else {

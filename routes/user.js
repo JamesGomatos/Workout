@@ -6,6 +6,10 @@ const router = new Router()
 module.exports = router
 
 
+/*
+Fix these routes are ugly
+*/
+
 router.post('/create-workout', User.createWorkout)
 
 router.delete('/my-workouts/delete/:id', User.deleteWorkout)
