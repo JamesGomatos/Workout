@@ -14,7 +14,7 @@ The API assumes that the client will send the JWT token in the Authorization Hea
 For example: To access a protected route the user must send a request with headers: 
   key=Authorization, value=bearer token
   
-### Here is an example of my test header:
+#### Here is an example of my test header:
 [
   {"key":"Content-Type","value":"application/json","description":""}, 
   {"key":"Authorization","value":"bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlhdCI6MTUyMTQ0ODY1NjAwMX0.GxLzq3IdU52wkKl6DDtwQpgdPkBO-vbJrLHwi24Ji38"} 
