@@ -20,6 +20,33 @@ For example: To access a protected route the user must send a request with heade
                   {"key":"Authorization","value":"bearer   eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlhdCI6MTUyMTQ0ODY1NjAwMX0.GxLzq3IdU52wkKl6DDtwQpgdPkBO-vbJrLHwi24Ji38"} 
                ]
 
+## Authentication Routes
+Below are the routes used to access the Sign-up and Sign-in operations related to workouts
+
+### Signup for an account 
+To create a workout you must send a HTTP POST request to route: https://limitless-sea-87001.herokuapp.com/sign-up
+
+The body of the request should contain the desired username, email, and password of the account in JSON notation
+#### For example:
+           {
+              "username": "james",
+              "email": "james.gomatos@gmail.com",
+              "password: "dog"
+           }
+
+
+
+### Signin to account (retrieve the json-web token to access the protected routes)
+
+To create a workout you must send a HTTP POST request to route: https://limitless-sea-87001.herokuapp.com/sign-in
+
+The body of the request should contain the username and password of the account in JSON notation
+#### For example:
+           {
+              "username": "james",
+              "password: "dog"
+           }
+           
 ## Workout Routes
 
 Below are the routes used to access the CRUD operations related to workouts
@@ -96,3 +123,41 @@ The body of the request should contain the workout_id and the exercise_id in JSO
                 "workout_id": 1,
                 "exercise_id": 2
            }
+           
+           
+## Exercise Routes
+
+Below are the routes used to access the Read operations related to Exercise.
+
+### Get a list of the different exercise categories 
+
+Send a HTTP Get request to the route: https://limitless-sea-87001.herokuapp.com/exercise/categories
+
+### Get a list of the different exercises in the yoga category
+
+Send a HTTP Get request to the route: https://limitless-sea-87001.herokuapp.com/exercise/yoga
+
+### Get a list of the different exercises in the balance category
+
+Send a HTTP Get request to the route: https://limitless-sea-87001.herokuapp.com/exercise/balance
+
+### Get a list of the different exercises in the weightlifting category
+
+Send a HTTP Get request to the route: https://limitless-sea-87001.herokuapp.com/exercise/weightlifting
+
+### Get a list of the different exercises in the weightlifting category that target muscle_group:chest
+
+Send a HTTP Get request to the route: https://limitless-sea-87001.herokuapp.com/exercise/weightlifting/chest
+
+### Get a list of the different exercises in the weightlifting category that taget muscle_group:legs
+
+Send a HTTP Get request to the route: https://limitless-sea-87001.herokuapp.com/exercise/weightlifting/legs
+
+### Get a list of the different exercises in the weightlifting category that taget muscle_group:biceps
+
+Send a HTTP Get request to the route: https://limitless-sea-87001.herokuapp.com/exercise/weightlifting/biceps
+
+### Get a list of the different exercises in the weightlifting category that taget muscle_group:shoulders
+
+Send a HTTP Get request to the route: https://limitless-sea-87001.herokuapp.com/exercise/weightlifting/shoulders
+
