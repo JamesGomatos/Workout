@@ -22,7 +22,7 @@ For example: To access a protected route the user must send a request with heade
 
 ## Workout Routes
 
-Below are the routes used to acess the CRUD operations related to workouts
+Below are the routes used to access the CRUD operations related to workouts
 
 ### Create a workout
 
@@ -65,8 +65,34 @@ The body of the request shouldn't contain anything/
 ### Follow a workout 
 Send A HTTP POST request to the route: https://limitless-sea-87001.herokuapp.com/follow/workout/:id
 
+
 ### Unfollow a workout
 
 Send a HTTP DELETE request to the route: https://limitless-sea-87001.herokuapp.com/unfollow/workout/:id
 
 
+## Lineitem Routes
+Below are the routes used to access the Read and Delete operations related to lineitems 
+
+
+### Add A Exercise Or Lineitem To A Workout
+
+Send a HTTP POST request to the route: https://limitless-sea-87001.herokuapp.com/add/line-item
+
+The body of the request should contain the workout_id and the exercise_id in JSON notation
+#### For example:
+           {
+                "workout_id": 1,
+                "exercise_id": 2
+           }
+           
+### Remove A Exercise Or Lineitem From A Workout
+
+Send a HTTP DELETE request to the route: https://limitless-sea-87001.herokuapp.com/delete/line-item
+
+The body of the request should contain the workout_id and the exercise_id in JSON notation
+#### For example:
+           {
+                "workout_id": 1,
+                "exercise_id": 2
+           }
