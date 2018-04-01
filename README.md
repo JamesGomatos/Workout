@@ -40,7 +40,7 @@ To delete a workout you must send a HTTP DELETE request to the route: https://li
 
 where :id is the id of the desired workout to be deleted. The body of the request shouldn't contain anything.
 
-### Get a list that contains the names of the logged-in user-created workouts and the workouts followed by the logged-in user.
+### Get a list that contains the names of the logged-in user's created workouts and the workouts followed by the logged-in user.
 
 Send a HTTP GET request to the route: https://limitless-sea-87001.herokuapp.com/delete/workouts
 
