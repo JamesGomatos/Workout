@@ -1,3 +1,7 @@
+DROP VIEW IF EXISTS weightlifting_bicep_workouts;
+DROP VIEW IF EXISTS weightlifting_chest_workouts;
+DROP VIEW IF EXISTS weightlifting_shoulder_workouts;
+DROP VIEW IF EXISTS weightlifting_legs_workouts;
 DROP TABLE IF EXISTS FOLLOW;
 DROP TABLE IF EXISTS LINEITEM;
 DROP TABLE IF EXISTS EXERCISE;
@@ -152,7 +156,7 @@ INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets
 INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Dumbbell Shoulder Press','weightlifting', 'shoulders', NULL, NULL, 8, '3-4', 2);
 INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Upright Barbell Row','weightlifting', 'shoulders', NULL, NULL, 10, '2-3', 2);
 INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Seated Bent-Over Rear Delt Raise','weightlifting', 'shoulders', NULL, NULL, 8, '2-3', 3);
-INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Side Lateral Raise', 'shoulders', NULL, NULL, 10, '2-3', 1);
+INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Side Lateral Raise', 'weightlifting', 'shoulders', NULL, NULL, 10, '2-3', 1);
 INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Standing Front Barbell Raise Over Head','weightlifting', 'shoulders', NULL, NULL, 8, '2-3', 2);
 INSERT INTO EXERCISE(name, category, muscle_group, breaths, duration, reps, sets, created_by) VALUES('Front Cable Raise','weightlifting', 'shoulders', NULL, NULL, 8, '2-3', 2);
 
