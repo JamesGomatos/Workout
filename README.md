@@ -16,7 +16,7 @@ For example: To access a protected route the user must send a request with heade
   
 #### Here is an example of my test header:
                [
-                  {"key":"Content-Type","value":"application/json","description":""}, 
+                  {"key":"Content-Type","value":"application/json"}, 
                   {"key":"Authorization","value":"bearer   eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlhdCI6MTUyMTQ0ODY1NjAwMX0.GxLzq3IdU52wkKl6DDtwQpgdPkBO-vbJrLHwi24Ji38"} 
                ]
 
@@ -33,4 +33,17 @@ The body of the request should contain the name of the workout in JSON notation
            {
               "name": "Best Workout"
            }
+
+### Delete a workout
+
+To delete a workout you must send a HTTP DELETE request to the route: https://limitless-sea-87001.herokuapp.com/delete/workout/:id
+
+where :id is the id of the desired workout to be deleted. The body of the request shouldn't contain anything.
+
+### Get a list that contains the names of the logged-in user-created workouts and the workouts followed by the logged-in user.
+
+Send a HTTP GET request to the route: https://limitless-sea-87001.herokuapp.com/delete/workouts
+
+The body of the request shouldn't contain anything.
+
 
