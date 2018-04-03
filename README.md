@@ -71,7 +71,7 @@ The body of the request shouldn't contain anything.
 
 ### Get a list that contains the names of the logged-in user's created workouts and the workouts followed by the logged-in user.
 
-Send a HTTP GET request to the route: https://limitless-sea-87001.herokuapp.com/delete/workouts
+Send a HTTP GET request to the route: https://limitless-sea-87001.herokuapp.com/workouts
 
 The body of the request shouldn't contain anything.
 
