@@ -1,3 +1,11 @@
+/*
+Author: James Gomatos
+5/3/2018
+user.js
+
+purpose: This file is responsible for mounting theuser routes
+and all their associated functions to a router.
+*/
 const dotenv = require('dotenv')
 const Router = require('express-promise-router')
 const User = require('../controllers/user')
@@ -6,9 +14,6 @@ const router = new Router()
 module.exports = router
 
 
-/*
-Fix these routes are ugly
-*/
 
 router.post('/create/workout', User.createWorkout)
 

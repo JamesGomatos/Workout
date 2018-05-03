@@ -1,3 +1,11 @@
+/*
+Author: James Gomatos
+5/3/2018
+exercise.js
+
+purpose: This file is responsible for mounting the exercise routes
+and all their associated functions to a router..
+*/
 const Exercise = require('../controllers/exercise')
 const Router = require('express-promise-router')
 

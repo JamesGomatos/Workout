@@ -1,3 +1,13 @@
+/*
+Author: James Gomatos
+5/3/2018
+app.js
+
+purpose: This file contains all the functions for the authentication system
+of our applciation.
+the
+*/
+
 const dotenv = require('dotenv')
 const passport = require('passport')
 const passportJWT = require('passport-jwt')
@@ -11,12 +21,13 @@ const bcrypt = require('bcrypt')
 const localOptions = {usernameField: 'username'}
 
 /*
+author: James Gomatos
+
 The local strategy is going to log our user in on our server.
 localLogin is an instance of Passport’s LocalStrategy class. It
 gets passed the localOptions object we defined and a callback function
 with the user info and done
 */
-
 const localLogin = new LocalStrategy(localOptions, async (username, password, done) => {
   try {
 
@@ -42,7 +53,8 @@ const localLogin = new LocalStrategy(localOptions, async (username, password, do
 })
 
 
-// this strategy logs our user into our server.
+// Author: James Gomatos
+// this strategy logs our user into our server usting javascript web tokens.
 const jwtOptions = {
   /*
   This function essentially decodes the encrypted JWT and allows us to
@@ -55,6 +67,7 @@ const jwtOptions = {
 
 
 /*
+Author: James Gomatos
 Note, that we assume that the client will send the JWT token in
 Authorization Header as a Bearer Token. The Passport JWT Strategy
 supports many other ways of getting the token from requests.

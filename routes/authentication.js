@@ -1,3 +1,11 @@
+/*
+Author: James Gomatos
+5/3/2018
+app.js
+
+purpose: This file is responsible for mounting the sign-up and sign-in routes
+and all their associated functions to a router..
+*/
 const dotenv = require('dotenv')
 const passport = require('passport')
 const Router = require('express-promise-router')

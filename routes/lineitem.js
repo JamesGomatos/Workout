@@ -1,3 +1,11 @@
+/*
+Author: James Gomatos
+5/3/2018
+lineitem.js
+
+purpose: This file is responsible for mounting the lineitem routes
+and all their associated functions to a router
+*/
 const lineitem = require('../controllers/lineitem')
 const Router = require('express-promise-router')
 

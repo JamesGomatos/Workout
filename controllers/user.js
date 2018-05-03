@@ -1,15 +1,29 @@
+/*
+Author: James Gomatos
+5/3/2018
+user.js
+
+purpose: This file is responsible for defiing the CRUD functions associated with
+the workout route
+created: 3/24/2018
+updated: 4:20/2018
+
+*/
+
+
 const db = require('../db')
 
 const { findWorkoutCreatedBy, findAllWorkoutsCreatedBy, followsWorkoutTrueOrFalse } = require('../actions/workout')
 
-// function that allows post request to create workouts note:(this route is protected)
+/*
+Author: James Gomatos
+function that allows post request to create workouts note:(this route is protected)
+*/
 const createWorkout = async (req, res) => {
   try {
     const likes = 1
     const { name } = req.body
     const id  = req.user.id
-    // if we don't have the required information
-    //res.send({error: "You must provide a name."})
     if (!name) {
       res.status(404).send({error: "You must provide a name."}).end()
     } else {
@@ -22,10 +36,12 @@ const createWorkout = async (req, res) => {
 }
 
 
+/*
+Author: James Gomatos
+Function that allows get request to list user's created workouts and liked workotus
+workouts note:(PROTECTED)
 
-// Function that allows get request to list user's created workouts and liked workotus
-// orkouts note:(PROTECTED)
-// Need to include followed workouts probably.
+*/
 const getWorkouts = async (req, res) => {
   try {
     const id = req.user.id
@@ -41,16 +57,13 @@ const getWorkouts = async (req, res) => {
 }
 
 
-// Function that returns the lineitems in a specific Workout.
+/*
+Author: James Gomatos
+Function that returns the lineitems in a specific Workout.
+*/
 const getWorkout = async (req, res) => {
   try {
-    /*
-      Need to figure out a way to get workout_id from the frontend.
-      Can't figure out a way to do it from backend because I don't
-      know which workout the user clicks until they do it.
-    */
     const workout_id = req.params.id
-    // Could possibly error check if the work_out id fails?
     const { rows } = await db.query('SELECT * from lineitem where workout_id=$1', [workout_id])
     if (rows.length == 0) {
       res.status(404).send({error: "The inputed workout ID doesn't exist"}).end()
@@ -63,7 +76,10 @@ const getWorkout = async (req, res) => {
 }
 
 
-// Function that allows a delete request to delete a workout note:PROTECTED
+/*
+Author: James Gomatos
+Function that allows a delete request to delete a workout note:PROTECTED
+*/
 const deleteWorkout = async(req, res) => {
   try {
     const workout_id = req.params.id
@@ -87,7 +103,10 @@ const deleteWorkout = async(req, res) => {
     }
 }
 
-// Function that retrieves a list of the most liked workouts.
+/*
+Author: James Gomatos
+Function that retrieves a list of the most liked workouts.
+*/
 const getLikedWorkouts = async (req, res) => {
   try {
     const { rows } = await db.query('SELECT name, likes from WORKOUT ORDER BY likes DESC')
@@ -101,7 +120,10 @@ const getLikedWorkouts = async (req, res) => {
   }
 }
 
-// Function that allows a user to follow a workout.
+/*
+Author: James Gomatos
+Function that allows a user to follow a workout.
+*/
 const followWorkout = async(req, res) => {
   try {
     const workout_id = req.params.id
@@ -121,7 +143,10 @@ const followWorkout = async(req, res) => {
 }
 
 
-// Function that allows a user to unfollow a workout.
+/*
+Author: James Gomatos
+Function that allows a user to unfollow a workout.
+*/
 const unfollowWorkout = async(req, res) => {
 
   try {

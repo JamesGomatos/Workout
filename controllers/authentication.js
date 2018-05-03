@@ -1,3 +1,15 @@
+/*
+Author: James Gomatos
+5/3/2018
+authentication.js
+
+purpose: This file is responsible for defiing the functions that that will signup
+a user and log them into the system
+created: 3/24/2018
+updated: 4:20/2018
+
+*/
+
 const dotenv = require('dotenv')
 const passport = require('passport')
 const passportJWT = require('passport-jwt')
@@ -9,7 +21,9 @@ const db = require('../db')
 
 
 
-/* Returns an ecoded token that
+/*
+author: James Gomatos
+Returns an ecoded token that
 is created with a subject set to the
 user's id and a timstep, along with a
 import SECRET_OR_KEY
@@ -23,16 +37,22 @@ const tokenForUser = (user) => {
 
 
 /*
- The signin function near the bottom simply takes in a logged in
- user and calls the tokenForUser function
-  and sends that token along to the front end.
+author: James Gomatos
+The signin function in a logged in
+user and calls the tokenForUser function
+and sends that token along to the front end.
 */
-
-// Caveat: should I use next here?
 const signin = (req, res, next) => {
   res.send({token: tokenForUser(req.user)})
 }
 
+
+/*
+author: James Gomatos
+The signup function takes as input a request.body that contains
+a username, email, and password and then adds it to the database with a hashed
+password
+*/
 
 const signup = async (req, res, next) => {
   try {

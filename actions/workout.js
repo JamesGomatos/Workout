@@ -1,7 +1,21 @@
+/*
+Author: James Gomatos
+5/3/2018
+workout.js
+
+purpose: This file is responsible for defiing function helpers for the workout
+route
+created: 3/24/2018
+updated: 4:20/2018
+
+*/
 const db = require('../db')
 
 
-// Find who created the workout given the specified id
+/*
+ author: James Gomatos
+ Find who created the workout given the specified id
+ */
 const findWorkoutCreatedBy = async (id) => {
   const { rows } = await db.query('SELECT created_by FROM workout WHERE ID=$1', [id])
   if (rows.length == 0) {
@@ -13,7 +27,10 @@ const findWorkoutCreatedBy = async (id) => {
 
 
 
-// Return a object of all the workouts created by user ID.
+/*
+ author: James Gomatos
+ Return a object of all the workouts created by user ID.
+*/
 const findAllWorkoutsCreatedBy = async (id) => {
   const { rows } = await db.query('SELECT * FROM workout WHERE created_by=$1', [id])
   if (rows.length == 0) {
@@ -22,8 +39,10 @@ const findAllWorkoutsCreatedBy = async (id) => {
   return rows
 }
 
-
-// Return true or false depending if the current user followers the specified workout.
+/*
+author: James Gomatos
+Return true or false depending if the current user followers the specified workout.
+*/
 const followsWorkoutTrueOrFalse = async (workout_id, follower_id) => {
   const { rows } = await db.query('SELECT * FROM follow WHERE workout_id=$1 AND follower_id=$2 ', [workout_id, follower_id])
   if (rows.length == 0) {

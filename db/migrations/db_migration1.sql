@@ -1,3 +1,13 @@
+/*
+Author: James Gomatos
+5/3/2018
+db_migration1.sql
+
+purpose: This file is responsible creating our database
+created: 3/24/2018
+updated: 4:20/2018
+
+*/
 DROP VIEW IF EXISTS weightlifting_bicep_workouts;
 DROP VIEW IF EXISTS weightlifting_chest_workouts;
 DROP VIEW IF EXISTS weightlifting_shoulder_workouts;
@@ -10,6 +20,7 @@ DROP TABLE IF EXISTS PROFILE;
 DROP TABLE IF EXISTS ACCOUNT;
 
 /*
+Author: James Gomatos
 Contains a list of accounts. One row per account. Which Contains
 all the users information
 */
@@ -21,7 +32,7 @@ CREATE TABLE ACCOUNT(
 );
 
 /*
-Not sure if I need this.
+Author: James Gomatos
 */
 CREATE TABLE PROFILE(
   ID SERIAL PRIMARY KEY,
@@ -32,6 +43,7 @@ CREATE TABLE PROFILE(
 );
 
 /*
+Author: James Gomatos
 Contains a list of workouts.One workout per row. Each workout has a created_by
 column which can be linked back to the account table.
 */
@@ -46,6 +58,7 @@ CREATE TABLE WORKOUT(
 
 
 /*
+Author: James Gomatos
 Contains a list of exercises. One exercise per row. Each exercise
 is created by a user and a created_by columun which which links
 to the account table.
@@ -65,6 +78,7 @@ CREATE TABLE EXERCISE (
 
 
 /*
+Author: James Gomatos
 Contains a list of workout items. One row for each exercise in a workout -
 so each workout can generate multiple rows in this table. Each lineitem added
 is a exercise from the table of exercises, so each row has a workout_id, which links
@@ -80,6 +94,7 @@ CREATE TABLE LINEITEM(
 
 
 /*
+Author: James Gomatos
 Contains a list of rows representing a workout and a user that follows
 the workout.
 */
@@ -91,12 +106,16 @@ CREATE TABLE FOLLOW(
 );
 
 
-
+/*
+Author: James Gomatos
+create indexs to optimize speed
+*/
 CREATE INDEX workout_exercise ON LINEITEM(workout_id, exercise_id);
 CREATE INDEX workout_follower ON FOLLOW(workout_id, follower_id);
 
 
 /*
+Author James Gomatos
 Create views for the the different categories so they are easier to query.
 */
 CREATE VIEW weightlifting_bicep_workouts AS

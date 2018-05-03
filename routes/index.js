@@ -1,3 +1,10 @@
+/*
+Author: James Gomatos
+5/3/2018
+index.js
+
+purpose: This file is responsible for mounting all routers to our application.
+*/
 const passport = require('passport')
 const passportJWT = require('jwt-simple')
 const passportService = require('../services/passport')
